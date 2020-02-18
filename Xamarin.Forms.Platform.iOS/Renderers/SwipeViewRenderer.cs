@@ -36,6 +36,7 @@ namespace Xamarin.Forms.Platform.iOS
 		double _previousScrollY;
 		bool _isDisposed;
 
+		[Internals.Preserve(Conditional = true)]
 		public SwipeViewRenderer()
 		{
 			SwipeView.VerifySwipeViewFlagEnabled(nameof(SwipeViewRenderer));
@@ -132,7 +133,7 @@ namespace Xamarin.Forms.Platform.iOS
 		{
 			UIColor backgroundColor;
 
-			if (Forms.IsiOS11OrNewer)
+			if (Forms.IsiOS13OrNewer)
 				backgroundColor = UIColor.SystemBackgroundColor;
 			else
 				backgroundColor = UIColor.White;
