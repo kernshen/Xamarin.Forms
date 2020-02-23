@@ -16,14 +16,14 @@ namespace Xamarin.Forms.ControlGallery.iOS.Tests
 		[Test(ExpectedResult = true)]
 		public async Task<bool> GetStreamAsyncThrowsOnFakeURI2()
 		{
-			var uri = new Uri("https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Portrait_Of_A_Baboon.jpg/314px-Portrait_Of_A_Baboon.jpg");
+			var uri = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Portrait_Of_A_Baboon.jpg/314px-Portrait_Of_A_Baboon.jpg";
 
 			var result = await Task.Run(async () =>
 			{
 				try
 				{
 					var images = Enumerable.Range(0, 10)
-						.Select(_ => new UriImageSource() { CachingEnabled = false, Uri = uri })
+						.Select(x => new UriImageSource() { CachingEnabled = false, Uri = new Uri(uri + "?id=" + x.ToString()) })
 						.Select(x => x.GetStreamAsync())
 						.ToArray();
 
